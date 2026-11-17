@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- groupId + artifactId + version identify this project.
+         They also decide the output file name below. -->
+    <groupId>rockar</groupId>
+    <artifactId>ExperimentalCore</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <name>ExperimentalCore</name>
+    <description>Core plugin for Experimental Server</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- Minecraft 26.x needs Java 25, so we compile for 25.
+             You have JDK 27, which can target 25 just fine. -->
+        <maven.compiler.release>25</maven.compiler.release>
+    </properties>
+
+    <repositories>
+        <!-- Paper's API is not on Maven Central, so we tell Maven where to look. -->
+        <repository>
+            <id>papermc</id>
+            <url>https://repo.papermc.io/repository/maven-public/</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <!-- The Paper server API, and the only thing this plugin needs.
+             "provided" means: compile against it, but do NOT bundle it into our
+             jar - the server already has it at runtime. Bundling it would make
+             the jar ~15 MB and risk clashing with the server's own copy.
+             This version matches the server build you are running (26.2 build 135). -->
+        <dependency>
+            <groupId>io.papermc.paper</groupId>
+            <artifactId>paper-api</artifactId>
+            <version>26.2.build.135-stable</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <!-- The finished jar will be target/ExperimentalCore-1.0.0.jar -->
+        <finalName>${project.artifactId}-${project.version}</finalName>
+
+        <resources>
+            <!-- Copy everything in src/main/resources into the jar, and replace
+                 ${project.version} inside those files with the real version.
+                 That is why plugin.yml can say version: '${project.version}'. -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.14.0</version>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

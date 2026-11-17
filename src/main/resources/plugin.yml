@@ -1,0 +1,24 @@
+# This file tells the server what the plugin is. Without it the jar is just a
+# jar - Bukkit will not even look inside it.
+#
+# These four lines are the minimum a plugin needs. Everything else in here is
+# optional, and this plugin currently needs none of it: no commands to declare,
+# no permissions to define, no other plugins to load after.
+
+name: ExperimentalCore
+
+# ${project.version} is replaced with 1.0.0 at build time by Maven, because
+# pom.xml turns on resource filtering. Change the version in one place only.
+version: '${project.version}'
+
+# The class Bukkit will load and call onEnable() on. If this does not match the
+# package + class name exactly, the plugin fails to load with ClassNotFoundException.
+main: rockar.experimentalcore.ExperimentalCore
+
+# The OLDEST Minecraft API this plugin is written against - not the newest.
+# Anything 1.13+ skips the legacy material conversion layer. Keeping it low
+# means the plugin still loads on older servers; a value NEWER than the
+# running server is rejected outright.
+api-version: '1.21'
+
+description: Core plugin for Experimental Server - welcome message on join.

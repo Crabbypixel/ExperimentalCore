@@ -1,0 +1,23 @@
+# ExperimentalCore configuration
+#
+# This copy lives inside the jar. The first time the plugin runs it is written
+# out to plugins/ExperimentalCore/config.yml - edit THAT one, not this.
+#
+# Config is read at RUNTIME, so changing the server's copy and restarting is
+# enough. Only changing the Java code needs a rebuild.
+#
+# Colour codes use '&', e.g. &6 is gold, &7 grey, &c red, &a green, &f white.
+
+join:
+  # Show the welcome message when a player joins?
+  message-enabled: true
+
+  # One list entry = one line in chat. Use "" for a blank line.
+  #
+  # A list rather than one block of text on purpose: in a multi-line quoted YAML
+  # string, single line breaks silently fold into spaces and only blank lines
+  # become real newlines. That is confusing to edit. A list is one line in,
+  # one line out.
+  message:
+    - "&6Welcome to Experimental Server!"
+    - "&7Running ExperimentalCore on Paper."
